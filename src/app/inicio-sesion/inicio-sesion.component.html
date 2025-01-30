@@ -13,10 +13,11 @@
         <label for="">Email</label>
     </div>
     <div class="inputContainer">
-        @if(ver){<input  type="text"  placeholder="">}
-        @else{<input  type="password"  placeholder="">}
+        <!-- @if(ver){<input  type="text"  placeholder="">}
+        @else{<input  type="password"  placeholder="">} -->
+        <input  type="password"  placeholder="" class="inputContracenia" id="contracenia">
         <label for="">Contraceña</label>
-        <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="">
+        <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia()">
     </div>
 
   </div>
