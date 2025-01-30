@@ -1,8 +1,8 @@
 <div class="indexInicio">
     <div class="Portada">
         <img src="../assets/imagenes/imagenPortada.png" alt="imagenPortada" class="imagenPortada">
-        <h1 class="text-iniciar-Sesion Titulo">Iniciar sesión</h1>
-        <p class="agradesimiento">Nos alegra tenerte de vuelta y estamos listos para atender tus necesidades. Inicia sesión y continúa aprovechando al máximo nuestra plataforma.</p>
+        <h1 class="text-iniciar-Sesion Titulo">Registrarse</h1>
+        <p class="agradesimiento">¡Bienvenido! Estamos encantados de que quieras unirte a nuestra plataforma. Regístrate y comienza a disfrutar de todas las ventajas que ofrecemos. No pierdas la oportunidad de ser parte de nuestra comunidad.</p>
         <ul>
         <li class="liPortada">
             <img src="../assets/imagenes/IconoRayo.png" alt="" class="iconoRayoImagenPortada">
@@ -20,8 +20,12 @@
     </div>
     <div class="inicio componenteInicioSesion">
         <h1 class="textPortalMonitoreo Titulo">Portal de monitoreo</h1>
-        <h3> Iniciar sesión</h3>
-        <form #form="ngForm" (ngSubmit)="iniciarSesion(form)">
+        <h3> Registrarse</h3>
+        <form #form="ngForm" (ngSubmit)="registrarse(form)">
+            <div class="inputContainer">
+                <input type="text"  placeholder="" name="user" ngModel id="user">
+                <label for="user">Usuario</label>
+            </div>
             <div class="inputContainer">
                 <input type="email"  placeholder="" name="email" ngModel id="email">
                 <label for="email">Email</label>
@@ -29,14 +33,19 @@
             <div class="inputContainer">
                 <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia">
                 <label for="contracenia">Contraceña</label>
-                <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia()">
+                <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contracenia')">
+            </div>
+            <div class="inputContainer">
+                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contraceniaRepetida" id="contraceniaRepetida">
+                <label for="contraceniaRepetida">Repetir contraceña</label>
+                <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contraceniaRepetida')">
             </div>
             <div class="BotonContainer">
-                <p>¿Olvidaste tu contraseña?</p>
-                <button type="submit">Iniciar sesión</button>
+                <p>-Al menos 10 caracteres y uno especial</p>
+                <button type="submit">Registrarse</button>
             </div>
          </form>
         <p style="font-size: 12px; margin-top: 10px; color: #84818A">Protegido por reCAPTCHA y sujeto a la <span style="color: #33A3AA">Política de Privacidad</span> y <span style="color: #33A3AA">Condiciones</span> .</p>
-        <p style="font-size: 14px;">¿No tienes Cuenta? <a href="/registro"><span style="color:#33A3AA ; margin-left: 5px; cursor: pointer;" onmouseover= "this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Registrate</span></a></p>
+        <p style="font-size: 14px;">¿Ya tienes cuenta? <a href="/"><span style="color:#33A3AA ; margin-left: 5px; cursor: pointer;" onmouseover= "this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Iniciar sesion</span></a></p>
     </div>
 </div>
