@@ -1,0 +1,90 @@
+.indexInicio{
+ display: flex;
+ align-items: center; 
+ height: 100vh;
+}
+.Portada{
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(180deg, #33A3AA 0%, #107076 100%);
+
+    // background-image: url(../assets/imagenes/imagenPortada.png),linear-gradient(180deg, #33A3AA 0%, #107076 100%);
+    // background-size: cover;
+    // background-position: center;
+    // background-blend-mode: overlay;
+    // background-color: rgba(255,255,255,0.01);
+    // background-color: blue;
+    width: 62%;
+    height: 100%;
+    padding-left: 128px;
+    padding-right: 335px;
+    flex-grow: 1;
+}
+.text-iniciar-Sesion{
+    font-weight: 600;
+    line-height: 58px;
+    margin-bottom: 15px;
+    z-index: 2;
+}
+.agradesimiento{
+    font-weight: 400;
+    z-index: 2;
+    font-size: 14px;
+    margin-right: 50px;
+}
+.componenteInicioSesion{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+    height: 100vh;
+    background-color: #FBFCFC;
+    border-bottom-left-radius: 32px;
+    border-top-left-radius:32px;
+    margin-left: -33px;
+    padding-left: 100px;
+    padding-right: 100px;
+    flex-grow: 1;
+    box-sizing: border-box;
+
+}
+h6{
+    font-weight: 500;
+    margin-top: 0;
+    margin-left: 7px;
+}
+.imagenPortada{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+    // object-fit:contain;
+    width: 65%;
+    height: 100%;
+}
+.liPortada{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.liPortada p{
+    font-size: 12px;
+   margin-top: -4px;
+    flex-basis: 100%;
+    margin-right: -70px;
+    margin-left: 27px;
+}
+.iconoRayoImagenPortada{
+    height: 20px;
+    width: 20px;
+}
+.iconoStrellaImagenPortada{
+    height: 18px;
+    width: 18px;
+}

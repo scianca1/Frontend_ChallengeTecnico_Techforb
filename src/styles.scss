@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.Titulo{
+    font-size: 48px;
+    line-height: 58px;
+    // width: 361px;
+    // height: 58px;
+}
+html,body{
+    font-family: "Poppins",sans-serif;
+    height: 100vh;
+    line-height: 24px;
+    flex-grow: 1;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
