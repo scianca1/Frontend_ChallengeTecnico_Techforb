@@ -36,8 +36,6 @@ export class InicioSesionComponent {
     iniciarSesion(form:NgForm){
       let email= form.value.email;
       let contracenia= form.value.contracenia;
-      console.log(email+" "+contracenia)
-      // console.log(this.inputEmail+" "+this.inputcontracenia);
       const inputEmail=document.getElementById("email");
       const inputError=document.getElementById("error");
       const inputContracenia = document.getElementById("contracenia");
@@ -57,7 +55,13 @@ export class InicioSesionComponent {
       })
       
       if(email!=""&&contracenia!=""){
-        this.hooks.login(email,contracenia);
+        if(!this.hooks.login(email,contracenia)){
+          (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
+          (inputContracenia as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
+          this.error="Parece que el usuario o la contraceña no son correctos";
+          (inputError as HTMLElement).style.display="block";
+        }
+        
       }else if(email==""){
           
           (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";

@@ -8,17 +8,20 @@ import { AuthService } from "../Services/auth.service";
   export class AuthHooks {
         constructor(private service: AuthService){}
 
-        login (email:string, contracenia:string){
-            this.service.login(email, contracenia).subscribe({
+        login (email:string, contracenia:string):boolean{
+             this.service.login(email, contracenia).subscribe({
                 next: (response) => {
                     location.href="/dashboard"
                   console.log('Inicio de sesión exitoso', response);
+                  return true;
                   // Aquí puedes redirigir al usuario o almacenar información
                 },
                 error: (error) => {
                   console.error('Error al iniciar sesión', error);
+                  return false;
                 }
               });
+             return false;
         }
 
         // register(user:string,email:string,contracenia:string,repetirContracenia:string){

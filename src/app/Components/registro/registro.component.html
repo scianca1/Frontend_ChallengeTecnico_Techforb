@@ -21,6 +21,9 @@
     <div class="inicio componenteInicioSesion">
         <h1 class="textPortalMonitoreo Titulo">Portal de monitoreo</h1>
         <h3> Registrarse</h3>
+        <Div class="error" id="error">
+            <p>{{error}}</p>
+        </Div>
         <form #form="ngForm" (ngSubmit)="registrarse(form)">
             <div class="inputContainer">
                 <input type="text"  placeholder="" name="user" ngModel id="user" required>

@@ -22,6 +22,7 @@ export class RegistroComponent {
     let email= form.value.email;
     let contracenia= form.value.contracenia;
     let repetirContracenia= form.value.contraceniaRepetida
+    const inputError=document.getElementById("error");
     
     if(user!=""&&email!=""&&contracenia!=""&&repetirContracenia!=""&&contracenia==repetirContracenia&&this.esEmailValido(email)){
       try{
@@ -31,11 +32,13 @@ export class RegistroComponent {
               this.error=json.text;
               console.log(this.error);
               console.log(json);
+              (inputError as HTMLElement).style.display="block";
           }else{
             this.error=json.text;
             this.textButtonRegister="Intentar Nuevamente"
             console.log(json);
             console.log(this.error);
+            (inputError as HTMLElement).style.display="block";
           }
       }catch(error:any){
       //   if (error instanceof HttpErrorResponse) {
@@ -47,11 +50,16 @@ export class RegistroComponent {
           console.log(error);
           const json = error as { estatus?:number,text?: string };
           this.error = json.text || "Ocurrió un error inesperado";
-          this.textButtonRegister="Intentar Nuevamente"
-              console.log(this.error);
-              console.log(json);
+          this.textButtonRegister="Intentar Nuevamente";
+          console.log(this.error);
+          console.log(json);
+          (inputError as HTMLElement).style.display="block";
       }
         
+    }else{
+      this.error ="Alguno de los campos no cumple con los requerimiento: Usuario no puede estar vacio, Contraceña deve tener al menos 8 caracteres, Contraceña debe ser igual en los dos ultimos campos, El email debe ser un mail valido"
+      this.textButtonRegister="Intentar de nuevo";
+      (inputError as HTMLElement).style.display="block";
     }
 
 

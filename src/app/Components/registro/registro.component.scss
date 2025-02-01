@@ -156,3 +156,16 @@ h6{
     height: 18px;
     width: 18px;
 }
+.error{
+    display: none;
+    width: 100%;
+    text-align: center;
+    color: rgb(175 0 0);
+    background-color:rgba(88, 2, 2, 0.329) ;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-top: -30px;
+}
+.error p{
+    margin: 0;
+}
