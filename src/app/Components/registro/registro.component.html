@@ -23,26 +23,26 @@
         <h3> Registrarse</h3>
         <form #form="ngForm" (ngSubmit)="registrarse(form)">
             <div class="inputContainer">
-                <input type="text"  placeholder="" name="user" ngModel id="user">
+                <input type="text"  placeholder="" name="user" ngModel id="user" required>
                 <label for="user">Usuario</label>
             </div>
             <div class="inputContainer">
-                <input type="email"  placeholder="" name="email" ngModel id="email">
+                <input type="email"  placeholder="" name="email" ngModel id="email" required>
                 <label for="email">Email</label>
             </div>
             <div class="inputContainer">
-                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia">
+                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia" required>
                 <label for="contracenia">Contraceña</label>
                 <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contracenia')">
             </div>
             <div class="inputContainer">
-                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contraceniaRepetida" id="contraceniaRepetida">
+                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contraceniaRepetida" id="contraceniaRepetida" required>
                 <label for="contraceniaRepetida">Repetir contraceña</label>
                 <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contraceniaRepetida')">
             </div>
             <div class="BotonContainer">
-                <p>-Al menos 10 caracteres y uno especial</p>
-                <button type="submit">Registrarse</button>
+                <p>-Al menos 8 caracteres</p>
+                <button type="submit">{{textButtonRegister}}</button>
             </div>
          </form>
         <p style="font-size: 12px; margin-top: 10px; color: #84818A">Protegido por reCAPTCHA y sujeto a la <span style="color: #33A3AA">Política de Privacidad</span> y <span style="color: #33A3AA">Condiciones</span> .</p>

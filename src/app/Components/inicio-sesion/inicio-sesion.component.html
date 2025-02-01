@@ -21,13 +21,16 @@
     <div class="inicio componenteInicioSesion">
         <h1 class="textPortalMonitoreo Titulo">Portal de monitoreo</h1>
         <h3> Iniciar sesión</h3>
+        <div class="error" id="error">
+            <p>{{error}}</p>
+        </div>
         <form #form="ngForm" (ngSubmit)="iniciarSesion(form)">
             <div class="inputContainer">
-                <input type="email"  placeholder="" name="email" ngModel id="email">
+                <input type="email"  placeholder="" name="email" ngModel id="email" required >
                 <label for="email">Email</label>
             </div>
             <div class="inputContainer">
-                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia">
+                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia" required>
                 <label for="contracenia">Contraceña</label>
                 <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia()">
             </div>
