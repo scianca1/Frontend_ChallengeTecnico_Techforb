@@ -55,12 +55,17 @@ export class InicioSesionComponent {
       })
       
       if(email!=""&&contracenia!=""){
-        if(!this.hooks.login(email,contracenia)){
-          (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-          (inputContracenia as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-          this.error="Parece que el usuario o la contraceña no son correctos";
-          (inputError as HTMLElement).style.display="block";
-        }
+        // if(!this.hooks.login(email,contracenia)){
+          this.hooks.login(email,contracenia).then((resultado)=>{
+            if(!resultado){
+              (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
+              (inputContracenia as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
+              this.error="Parece que el usuario o la contraceña no son correctos";
+              (inputError as HTMLElement).style.display="block";
+            }
+          })
+        
+        // }
         
       }else if(email==""){
           
