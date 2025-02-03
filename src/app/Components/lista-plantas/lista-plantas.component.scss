@@ -55,7 +55,7 @@ img{
     padding-left: 20px;
     padding-right: 20px;
     border: 0;
-    margin-left: 55px;
+    margin-left: 40px;
 }
 .trFijo{
     color: rgba(176, 202, 209, 1);
@@ -75,4 +75,12 @@ tr{
 .bandera{
     height: 12.38px;
     width: 18px;
+}
+.seleccionado{
+    background-color: rgba(239, 242, 247, 1);
+    transition: background-color 0.3s ease;
+}
+.containVerPlanta{
+    display: flex;
+    align-items: center;
 }

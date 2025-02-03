@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PlantaDto } from 'src/app/Dtos/PlantaDto';
 import { DetallePlantaComponent } from '../detalle-planta/detalle-planta.component';
 import { ListaPlantasComponent } from '../lista-plantas/lista-plantas.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
@@ -35,4 +36,5 @@ export class DashboardComponent {
      urlIcon:"../assets/imagenes/cruzIcono.png"
     }
   ]
+  
 }
