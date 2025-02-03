@@ -1,0 +1,38 @@
+.contentGeneral{
+    margin: 35px;
+}
+h2{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.contentVacio{
+    background-color: rgba(255, 255, 255, 0.39);
+    height: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+span{
+    width: 250px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18.2px;
+    text-align: center;
+}
+.nombrePlanta{
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18 px;
+    color: rgba(51, 163, 170, 1);
+}
+.nombrePlanta img{
+    margin-right: 5px;
+}
+.contentConDetalle{
+    margin-top: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

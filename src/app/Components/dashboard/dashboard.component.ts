@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DetallePlantaComponent } from '../detalle-planta/detalle-planta.component';
 import { ListaPlantasComponent } from '../lista-plantas/lista-plantas.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { SideNavComponent } from '../side-nav/side-nav.component';
@@ -7,7 +8,7 @@ import { TarjetasGeneralesComponent } from '../tarjetas-generales/tarjetas-gener
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SideNavComponent,NavBarComponent,TarjetasGeneralesComponent,ListaPlantasComponent],
+  imports: [SideNavComponent,NavBarComponent,TarjetasGeneralesComponent,ListaPlantasComponent,DetallePlantaComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

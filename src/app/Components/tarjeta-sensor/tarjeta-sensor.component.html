@@ -1,0 +1,11 @@
+<div class="targetaSensor">
+    <div class="lectura">
+        <p class="nombre">{{sensor.getNombre()}}</p>
+        <div class="metricas">
+           <p><img src="../assets/imagenes/tildeChicoIcono.png" alt=""><samp>{{sensor.getNroLecturasOK()}}</samp></p>
+           <p><img src="../assets/imagenes/admiracionChicoIcono.png" alt=""><samp>{{sensor.getNroAlertasMedias()}}</samp></p>
+           <p><img src="../assets/imagenes/peligroChicoicono.png" alt=""><samp>{{sensor.getNroAlertasRojas()}}</samp></p>
+        </div>
+    </div>
+    <img src="{{sensor.getImagenUrl()}}" alt="" class="imagenGrande">
+</div>

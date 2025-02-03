@@ -7,9 +7,11 @@
 }
 html,body{
     font-family: "Poppins",sans-serif;
-    height: 100vh;
+    // height: 100vh;
+    min-height: 100%;
     line-height: 24px;
-    flex-grow: 1;
+    // flex-grow: 1;
+    height: auto;
 }
 ul{
     list-style: none;

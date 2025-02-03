@@ -1,0 +1,24 @@
+<div class="contentGeneral">
+    <h2>Monitoreo por plantas</h2>
+    @if(seleccionado){
+        <span class="nombrePlanta"><img src={{banderaUrl}} alt="">{{nombrePlanta}}</span>
+        <div class="contentConDetalle">
+            @for(sensor of sensores;track sensor.getId()){
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+               <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
+            }
+        </div>
+    }
+    @else{
+        <div class="contentVacio">
+            <span>Selecciona una planta de la tabla para mostrar resultados</span>
+        </div>
+    }
+    
+</div>
