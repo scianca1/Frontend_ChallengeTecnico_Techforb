@@ -1,7 +1,7 @@
 <div class="contentGeneral">
     <h2>Monitoreo por plantas</h2>
     @if(seleccionado){
-        <span class="nombrePlanta"><img src={{banderaUrl}} alt="">{{nombrePlanta}}</span>
+        <span class="nombrePlanta"><img src={{planta.imgBanderaUrl}} alt="">{{planta.pais}}, {{planta.nombrePlanta}}</span>
         <div class="contentConDetalle">
             @for(sensor of sensores;track sensor.getId()){
                <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 

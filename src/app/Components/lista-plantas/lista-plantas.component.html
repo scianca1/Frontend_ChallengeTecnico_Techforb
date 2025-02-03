@@ -20,12 +20,7 @@
                 <th>{{planta.lecturasOk}}</th>
                 <th>{{planta.alertasMadias}}</th>
                 <th>{{[planta.alertasRojas]}}</th>
-                @if(planta.id===selectPlantaId){
-                    <th class="containVerPlanta"><Button class="verPlanta" (click)="dejarDeverPlanta(planta.id)">Dejar de ver</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
-                }@else{
-                    <th class="containVerPlanta"><Button class="verPlanta" (click)="verPlanta(planta.id)">Ver Planta</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
-                }
-                
+                <th class="containVerPlanta"><Button class="verPlanta" (click)="verPlanta(planta.id,planta)">{{textBotonVerplanta}}</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
             </tr>
         }
       
