@@ -12,15 +12,15 @@
             <th><img src="../assets/imagenes/peligroIcono.png" alt="">Alertas rojas</th>
             <th></th>
         </tr>
-        @for(planta of Plantas;track planta.id){
+        @for(planta of plantas;track planta.id){
            
             <tr [ngClass]="{'seleccionado':planta.id===selectPlantaId}">
-                <th><img src={{planta.imgBanderaUrl}} alt="" class="bandera"> {{planta.pais}}</th>
-                <th>{{planta.nombrePlanta}}</th>
+                <th><img src={{getBanderaUrl(planta.pais)}} alt="" class="bandera"> {{planta.pais}}</th>
+                <th>{{planta.nombre}}</th>
                 <th>{{planta.lecturasOk}}</th>
                 <th>{{planta.alertasMadias}}</th>
                 <th>{{[planta.alertasRojas]}}</th>
-                <th class="containVerPlanta"><Button class="verPlanta" (click)="verPlanta(planta.id,planta)">{{textBotonVerplanta}}</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
+                <th class="containVerPlanta"><Button class="verPlanta" id="boton{{planta.id}}"(click)="verPlanta(planta.id,planta)">{{selectPlantaId===planta.id? 'Dejar de ver':'Ver Planta'}}</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
             </tr>
         }
       

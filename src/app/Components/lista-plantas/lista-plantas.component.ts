@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { PlantaDto } from 'src/app/Dtos/PlantaDto';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetallePlantaService } from 'src/app/Services/detalle-planta.service';
+import { Planta } from 'src/app/Interfaces/Planta';
+import { PlantaHooks } from 'src/app/Hooks/PlantaHooks';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-lista-plantas',
@@ -10,26 +12,38 @@ import { DetallePlantaService } from 'src/app/Services/detalle-planta.service';
   templateUrl: './lista-plantas.component.html',
   styleUrl: './lista-plantas.component.scss'
 })
-export class ListaPlantasComponent {
+export class ListaPlantasComponent implements OnInit{
   textBotonVerplanta:string="Ver Planta"
   selectPlantaId:number|null=null;
-  Plantas:PlantaDto[]=[new PlantaDto(1,"paraguay","sao Pablo",500,233,33,"../assets/imagenes/BanderaBrasil.png")];
-  constructor(private servicioDetalle:DetallePlantaService){
+  plantas:Planta[]=[];
+  constructor(private servicioDetalle:DetallePlantaService,private plantaHooks:PlantaHooks){
 
   }
+  async ngOnInit(): Promise<void> {
+    const response:Planta[]|string= await this.plantaHooks.getAllPlantas();
+    if(typeof response!="string"){
+        this.plantas=response;
+        console.log("Componente ="+this.plantas[0].nombre);
+    }else{
+        //to do: Manejar errores posibles 
+    }  
+  }
 
-verPlanta(id:number,planta:PlantaDto){
+
+
+verPlanta(id:number,planta:Planta){
   console.log(id);
-  if(this.selectPlantaId==null){
-   
-    this.textBotonVerplanta="Dejar de ver"
-     this.selectPlantaId=id;
+  if(this.selectPlantaId==id){
+    this.selectPlantaId=null;
   }else{
-    this.textBotonVerplanta="Ver Planta"
-    this.selectPlantaId=null
+    this.selectPlantaId=id;
   }
   this.servicioDetalle.verdetalle(planta);
 }  
+
+getBanderaUrl(nombrePais:string):string{
+  return this.servicioDetalle.getBanderaUrl(nombrePais);
+}
 
 }
 
