@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +14,25 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
-    const loginData = { email, password };
-    return this.http.post(this.apiUrl+"auth/login", loginData, { withCredentials: true });
+  // login(email: string, password: string): Observable<any> {
+  //   const loginData = { email, password };
+  //   return this.http.post(this.apiUrl+"auth/login", loginData, { withCredentials: true });
+  // }
+
+  login(email: string, password: string):Promise<boolean>{
+    return new Promise<boolean>((resolve)=>{
+      this.http.post(this.apiUrl+"auth/login",{email, password}, { withCredentials: true }).subscribe({
+        next: (response) => {
+          location.href="/dashboard"
+          console.log('Inicio de sesión exitoso', response);
+          resolve(true);
+        },
+        error: (error) => {
+          console.error('Error al iniciar sesión', error);
+          resolve(error);
+        }
+      });
+    })
   }
   register(usuario:string,email:string,password:string,repetidaPassword:string): Observable<any>{
     const registerData={usuario,email,password,repetidaPassword};

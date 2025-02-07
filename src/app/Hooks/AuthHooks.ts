@@ -8,20 +8,20 @@ import { AuthService } from "../Services/auth.service";
   export class AuthHooks {
         constructor(private service: AuthService){}
 
-        login (email:string, contracenia:string):Promise<boolean>{
-          return new Promise<boolean>((resolve,rejects)=>{
-            this.service.login(email, contracenia).subscribe({
-              next: (response) => {
-                location.href="/dashboard"
-                console.log('Inicio de sesión exitoso', response);
-                resolve(true);
-              },
-              error: (error) => {
-                console.error('Error al iniciar sesión', error);
-                resolve(false);
-              }
-            });
-          })
+        // login (email:string, contracenia:string):Promise<boolean>{
+        //   return new Promise<boolean>((resolve,rejects)=>{
+        //     this.service.login(email, contracenia).subscribe({
+        //       next: (response) => {
+        //         location.href="/dashboard"
+        //         console.log('Inicio de sesión exitoso', response);
+        //         resolve(true);
+        //       },
+        //       error: (error) => {
+        //         console.error('Error al iniciar sesión', error);
+        //         resolve(false);
+        //       }
+        //     });
+        //   })
             //  this.service.login(email, contracenia).subscribe({
             //     next: (response) => {
             //         // location.href="/dashboard"
@@ -35,7 +35,7 @@ import { AuthService } from "../Services/auth.service";
             //     }
             //   });
             // //  return true;
-        }
+        // }
 
         // register(user:string,email:string,contracenia:string,repetirContracenia:string){
         //     this.service.register(user,email,contracenia,repetirContracenia).pipe(
