@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioSesionComponent } from './Components/inicio-sesion/inicio-sesion.component';
 import { ErrorInterceptor } from './errores/ErrorInterceptor';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ErrorInterceptor } from './errores/ErrorInterceptor';
     HttpClientModule,
     InicioSesionComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
 
   ],
   providers: [
@@ -27,6 +30,8 @@ import { ErrorInterceptor } from './errores/ErrorInterceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi:true
+    },{
+      provide: CookieService
     }
   ],
   bootstrap: [AppComponent]
