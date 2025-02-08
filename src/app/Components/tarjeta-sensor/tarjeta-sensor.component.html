@@ -1,11 +1,15 @@
-<div class="targetaSensor">
-    <div class="lectura">
-        <p class="nombre">{{sensor.getNombre()}}</p>
-        <div class="metricas">
-           <p><img src="../assets/imagenes/tildeChicoIcono.png" alt=""><samp>{{sensor.getNroLecturasOK()}}</samp></p>
-           <p><img src="../assets/imagenes/admiracionChicoIcono.png" alt=""><samp>{{sensor.getNroAlertasMedias()}}</samp></p>
-           <p><img src="../assets/imagenes/peligroChicoicono.png" alt=""><samp>{{sensor.getNroAlertasRojas()}}</samp></p>
+<!-- if(sensor){ -->
+    <div class="targetaSensor" >
+    @if(sensor){
+        <div class="lectura">
+            <p class="nombre">{{sensor.nombre}}</p>
+            <div class="metricas">
+            <p><img src="../assets/imagenes/tildeChicoIcono.png" alt=""><span>{{sensor.lecturasOK}}</span></p>
+            <p><img src="../assets/imagenes/admiracionChicoIcono.png" alt=""><span>{{sensor.alertasMedias}}</span></p>
+            <p><img src="../assets/imagenes/peligroChicoicono.png" alt=""><span>{{sensor.alertasRojas}}</span></p>
+            </div>
         </div>
+        <img src={{getImagenUrl(sensor.nombre)}} alt="" class="imagenGrande">
+    }
     </div>
-    <img src="{{sensor.getImagenUrl()}}" alt="" class="imagenGrande">
-</div>
+
