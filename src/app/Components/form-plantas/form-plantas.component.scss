@@ -36,7 +36,11 @@ button{
     border: 1px solid;
     font-size: 14px;
     font-weight: 500;
+    &:disabled{
+        opacity: 0.4;
+    }
 }
+
 form{
     display: flex;
     flex-direction: column;

@@ -4,7 +4,7 @@
     }@else if(tipo=="editar"){
         <h3>Editar planta</h3>
     }
-     <form [formGroup]="loginForm" (ngSubmit)="tipo=='crear'? crearPlanta(): editarPlanta()">
+     <form [formGroup]="loginForm" (ngSubmit)="tipo=='crear'? crearPlanta(): editarPlanta(id)">
             <div class="inputContainer">
                 <label for="nombre">Nombre planta</label>
                 <input type="text" name="nombre" id="nombre" 
@@ -15,9 +15,6 @@
             </div>
             <div class="inputContainer">
                 <label for="pais">Pais</label>
-                <!-- <input type="" name="nombre" id="nombre" 
-                formControlName="nombre" class="form-control"
-                [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" > -->
                 <select 
                 id="pais"
                 formControlName="pais" class="form-control formInput"
@@ -30,8 +27,10 @@
                 </select> 
             </div>
             <div class="containsButtons">
-                <button class="cancelar">Canselar</button>
-                <button type="submit" class="crear">Crear</button>
+                <button class="cancelar" type="button" (click)="cerrarCartel()">Canselar</button>
+               
+                <button type="submit" class="crear" [disabled]="loginForm.invalid">{{tipo=='crear' ? 'Crear':'Editar'}}</button>
+               
             </div>
     </form>
     

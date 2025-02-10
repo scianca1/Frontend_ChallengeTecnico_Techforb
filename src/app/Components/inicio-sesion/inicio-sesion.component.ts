@@ -46,55 +46,7 @@ export class InicioSesionComponent {
       (inputContracenia as HTMLInputElement).type = "password"
      }
     }
-    // iniciarSesion(form:NgForm){
-    //   let email= form.value.email;
-    //   let contracenia= form.value.contracenia;
-    //   const inputEmail=document.getElementById("email");
-    //   const inputError=document.getElementById("error");
-    //   const inputContracenia = document.getElementById("contracenia");
-    //   inputEmail?.addEventListener("input",(event)=>{
-    //     if((event.target as HTMLInputElement).value!=""){
-    //       (event.target as HTMLInputElement).style.border = "1px solid rgba(220, 219, 221, 1)";
-    //     }else{
-    //       (event.target as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //     }
-    //   })
-    //   inputContracenia?.addEventListener("input",(event)=>{
-    //     if((event.target as HTMLInputElement).value.length>8){
-    //       (event.target as HTMLInputElement).style.border = "1px solid rgba(220, 219, 221, 1)";
-    //     }else{
-    //       (event.target as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //     }
-    //   })
-      
-    //   if(email!=""&&contracenia!=""){
-    //     // if(!this.hooks.login(email,contracenia)){
-    //       this.hooks.login(email,contracenia).then((resultado)=>{
-    //         if(!resultado){
-    //           (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //           (inputContracenia as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //           this.error="Parece que el usuario o la contraceña no son correctos";
-    //           (inputError as HTMLElement).style.display="block";
-    //         }
-    //       })
-        
-    //     // }
-        
-    //   }else if(email==""){
-          
-    //       (inputEmail as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //       this.error="El Campo no puede estar vacio";
-    //       (inputError as HTMLElement).style.display="block";
-    //   }
-    //   if(contracenia==""){
-    //     // const input=document.getElementById("contracenia");
-    //       (inputContracenia as HTMLInputElement).style.border = "1px solid rgb(255 0 0 / 79%)";
-    //       this.error="El Campo no puede estar vacio, la contraceña debe contenes al menos 8 caracteres";
-    //       (inputError as HTMLElement).style.display="block";
-    //   }
-
-    //     console.log(form.value.contracenia)
-    // }
+   
     async iniciarSesion(){
       
         if(this.loginForm.invalid){

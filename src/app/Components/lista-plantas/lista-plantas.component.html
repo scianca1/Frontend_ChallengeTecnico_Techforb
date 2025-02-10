@@ -1,7 +1,7 @@
 <div class="content">
     <div class="headTable">
             <h3>Plantas</h3>
-            <Button (click)='abrirCartel("CrearPlanta")'>+Crear nueva planta</Button>
+            <Button (click)='abrirCartel("CrearPlanta", null)'>+Crear nueva planta</Button>
     </div>
     <table>
         <tr class="trFijo">
@@ -20,7 +20,7 @@
                 <th>{{planta.lecturasOk}}</th>
                 <th>{{planta.alertasMadias}}</th>
                 <th>{{[planta.alertasRojas]}}</th>
-                <th class="containVerPlanta"><Button class="verPlanta" id="boton{{planta.id}}"(click)="verPlanta(planta.id,planta)">{{selectPlantaId===planta.id? 'Dejar de ver':'Ver Planta'}}</Button><img src="../assets/imagenes/tresPuntos.png" alt="" class="tresPuntos"></th>
+                <th class="containVerPlanta"><Button class="verPlanta" id="boton{{planta.id}}"(click)="verPlanta(planta.id,planta)">{{selectPlantaId===planta.id? 'Dejar de ver':'Ver Planta'}}</Button><img src="../assets/imagenes/tresPuntos.png" (click)='abrirCartel("EditarPlanta",planta.id)' alt="" class="tresPuntos"></th>
             </tr>
         }
       

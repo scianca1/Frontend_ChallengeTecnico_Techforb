@@ -1,5 +1,9 @@
 <div class="content">
     @if(content=="CrearPlanta"){
-        <app-form-plantas tipo="crear"></app-form-plantas>
+        <app-form-plantas tipo="crear" (contenErrorExito)="setContentErrorExito($event)"></app-form-plantas>
+    }@else if(content=="EditarPlanta"&& id!=null){
+        <app-form-plantas tipo="editar" [id]="id" (contenErrorExito)="setContentErrorExito($event)"></app-form-plantas>
+    }@else if(content=="error"||content=="exito"){
+        <app-cartel-error [tipo]="content"></app-cartel-error>
     }
 </div>

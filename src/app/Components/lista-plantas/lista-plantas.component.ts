@@ -45,8 +45,11 @@ getBanderaUrl(nombrePais:string):string{
   return this.servicioDetalle.getBanderaUrl(nombrePais);
 }
 
-abrirCartel(content:string):void{
+abrirCartel(content:string,id:number|null):void{
     this.servicioCartel.set(content);
+    if(id!=null){
+      this.servicioCartel.setId(id);
+    }
 }
 
 }

@@ -1,1 +1,14 @@
-<p>cartel-error works!</p>
+<div class="contain">
+    <div class="mensaje">
+        @if(tipo=="exito"){
+            <img src={{urlIconExito}} alt="" class="imgExito">
+        }@else{
+            <img src={{urlIconError}} alt="" class="imgExito">
+        }
+        <p>{{Mensaje}}<p>
+    </div>
+    <img src="../assets/imagenes/cerrarIcon.png" alt="" class="cruz" (click)="cerrarCartel()">
+</div>
+
+
+
