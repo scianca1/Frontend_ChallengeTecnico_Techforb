@@ -27,5 +27,6 @@ export class DetallePlantaComponent {
 
   getBanderaUrl(nombrePais:string):string{
     return this.service.getBanderaUrl(nombrePais);
+
   }
 }

@@ -54,9 +54,7 @@ export class DashboardComponent implements OnInit{
   }
 
   getIconTarjetaGeneral(text:string){
-    console.log("texto= "+text)
     let nombre:string=text.replace(" ","");
-    console.log("Resultado= "+nombre)
     return "../assets/imagenes/"+nombre+".png";
     // return "../assets/imagenes/Sensoresdeshabilitados.png";
   }

@@ -1,0 +1,57 @@
+input.ng-invalid.ng-touched,select.ng-invalid.ng-touched{
+    border: 2px solid red 
+}
+h3{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    margin-bottom: 12px;
+}
+.formInput{
+    width: 320px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    
+}
+.formInput::placeholder{
+    color: 
+    rgba(186, 190, 197, 1);
+}
+label{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    color: rgba(131, 139, 158, 1);
+}
+.containsButtons{
+    width: 225px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+button{
+    border-radius: 5px;
+    width: 100px;
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: 500;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cancelar{
+    background-color: transparent;
+    border-color:rgba(51, 163, 170, 1) ;
+    color:  rgba(51, 163, 170, 1);
+}
+.crear{
+    background-color: rgba(51, 163, 170, 1);
+    border-color:rgba(51, 163, 170, 1) ;
+    color: white;
+}
+.optionPlaceholder{
+    color:rgba(186, 190, 197, 1);
+}

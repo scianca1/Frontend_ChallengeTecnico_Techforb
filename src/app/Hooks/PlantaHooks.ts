@@ -18,7 +18,7 @@ import { PlantaService } from "../Services/planta.service";
         return new Promise<Planta[]|string>((resolve,rejects)=>{
           this.service.getAllPlantas().subscribe({
             next: (response) => {
-              console.log('plantas exitoso', response);
+              // console.log('plantas exitoso', response);
               this.plantas=response;
               resolve(this.plantas);
             },

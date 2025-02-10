@@ -1,0 +1,38 @@
+<div>
+    @if(tipo=="crear"){
+        <h3>Crear nueva planta</h3>
+    }@else if(tipo=="editar"){
+        <h3>Editar planta</h3>
+    }
+     <form [formGroup]="loginForm" (ngSubmit)="tipo=='crear'? crearPlanta(): editarPlanta()">
+            <div class="inputContainer">
+                <label for="nombre">Nombre planta</label>
+                <input type="text" name="nombre" id="nombre" 
+                formControlName="nombre" class="form-control formInput"
+                [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" 
+                placeholder="Ingrese nombre"
+                >
+            </div>
+            <div class="inputContainer">
+                <label for="pais">Pais</label>
+                <!-- <input type="" name="nombre" id="nombre" 
+                formControlName="nombre" class="form-control"
+                [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" > -->
+                <select 
+                id="pais"
+                formControlName="pais" class="form-control formInput"
+                [class.is.invalid]="loginForm.get('pais')?.invalid && loginForm.get('pais')?.touched"
+                >
+                    <option  class="optionPlaceholder" value="" disabled>Seleccione pais</option>
+                    @for(pais of paises;track pais){
+                        <option [value]="pais">{{pais}}</option>
+                    }
+                </select> 
+            </div>
+            <div class="containsButtons">
+                <button class="cancelar">Canselar</button>
+                <button type="submit" class="crear">Crear</button>
+            </div>
+    </form>
+    
+</div>

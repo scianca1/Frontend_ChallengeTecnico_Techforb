@@ -19,7 +19,9 @@ export class TarjetaSensorComponent {
    @Input()sensor?:Sensor;
 
    getImagenUrl(nombreSensor:string):string{
-      return "../assets/imagenes/iconSensor1.png";
+      // return "../assets/imagenes/iconSensor1.png";
+      let nombre:string=nombreSensor.replace(/\s/g,"");
+      return "../assets/imagenes/"+nombre+".png";
    }
 
 }

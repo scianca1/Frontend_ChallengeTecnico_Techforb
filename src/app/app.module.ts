@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { InicioSesionComponent } from './Components/inicio-sesion/inicio-sesion.component';
 import { ErrorInterceptor } from './errores/ErrorInterceptor';
 import {CookieService} from 'ngx-cookie-service';
+import { CartelComponent } from './Components/cartel/cartel.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {CookieService} from 'ngx-cookie-service';
     AppRoutingModule,
     HttpClientModule,
     InicioSesionComponent,
+    CartelComponent,
     FormsModule,
     ReactiveFormsModule,
     
