@@ -15,11 +15,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // login(email: string, password: string): Observable<any> {
-  //   const loginData = { email, password };
-  //   return this.http.post(this.apiUrl+"auth/login", loginData, { withCredentials: true });
-  // }
-
   login(email: string, password: string):Promise<boolean>{
     return new Promise<boolean>((resolve)=>{
       this.http.post(this.apiUrl+"auth/login",{email, password}, { withCredentials: true }).subscribe({
@@ -50,9 +45,23 @@ export class AuthService {
       });
     })
   }
-  register(usuario:string,email:string,password:string,repetidaPassword:string): Observable<any>{
+  register(usuario:string,email:string,password:string,repetidaPassword:string): Promise<boolean>{
     const registerData={usuario,email,password,repetidaPassword};
-    return this.http.post(this.apiUrl+"auth/register",registerData,{observe:'response'});
+    return new Promise<boolean>((resolve)=>{
+      return this.http.post(this.apiUrl+"auth/register",registerData,{observe:'response'}).subscribe({
+        next: (response) => {
+        location.href="/"
+        console.log('Registro sesión exitoso', response);
+        resolve(true);
+      },
+      error: (error) => {
+        console.error('Error al Registrarce sesión', error.error);
+        resolve(error);
+      }
+      })
+      
+    })
+    
   }
 
 }

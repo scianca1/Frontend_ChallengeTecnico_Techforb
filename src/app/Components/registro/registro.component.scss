@@ -47,7 +47,6 @@ label{
 .ojoContracenia{
     position: absolute;
     top: 18px;
-    // left: 300px;
     right: 20px;
 }
 .BotonContainer{
@@ -70,9 +69,6 @@ button{
     font-size: 12px;
     margin-right: 15px;
 }
-
-
-// agrego 
 
 .indexInicio{
  display: flex;
@@ -132,7 +128,6 @@ h6{
     right: 0;
     bottom: 0;
     opacity: 0.2;
-    // object-fit:contain;
     width: 65%;
     height: 100%;
 }
@@ -157,7 +152,7 @@ h6{
     width: 18px;
 }
 .error{
-    display: none;
+    display: block;
     width: 100%;
     text-align: center;
     color: rgb(175 0 0);
@@ -168,4 +163,7 @@ h6{
 }
 .error p{
     margin: 0;
+}
+input.ng-invalid.ng-touched{
+    border: 2px solid red 
 }

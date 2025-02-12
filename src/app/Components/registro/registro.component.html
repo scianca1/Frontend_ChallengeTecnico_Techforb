@@ -21,25 +21,42 @@
     <div class="inicio componenteInicioSesion">
         <h1 class="textPortalMonitoreo Titulo">Portal de monitoreo</h1>
         <h3> Registrarse</h3>
+        @if(error!=""){
         <Div class="error" id="error">
             <p>{{error}}</p>
         </Div>
-        <form #form="ngForm" (ngSubmit)="registrarse(form)">
+        }
+        <form [formGroup]="loginForm" (ngSubmit)="registrarse()">
             <div class="inputContainer">
-                <input type="text"  placeholder="" name="user" ngModel id="user" required>
+                <input 
+                type="text" name="usuario" id="usuario" 
+                formControlName="usuario" class="form-control"
+                [class.is.invalid]="loginForm.get('usuario')?.invalid && loginForm.get('usuario')?.touched"
+                >
                 <label for="user">Usuario</label>
             </div>
             <div class="inputContainer">
-                <input type="email"  placeholder="" name="email" ngModel id="email" required>
+                <input 
+                type="email" name="email" id="email" 
+                formControlName="email" class="form-control"
+                [class.is.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                 <label for="email">Email</label>
             </div>
             <div class="inputContainer">
-                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contracenia" id="contracenia" required>
+                <input  type="password"  
+                type="password"   class="inputContracenia form-control"  
+                name="contracenia" id="contracenia" 
+                formControlName="password"
+                [class.is.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                 <label for="contracenia">Contraceña</label>
                 <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contracenia')">
             </div>
             <div class="inputContainer">
-                <input  type="password"  ngModel placeholder="" class="inputContracenia"  name="contraceniaRepetida" id="contraceniaRepetida" required>
+                <input  
+                type="password"   class="inputContracenia form-control"  
+                name="RepetirPassword" id="RepetirPassword" 
+                formControlName="RepetirPassword"
+                [class.is.invalid]="loginForm.get('RepetirPassword')?.invalid && loginForm.get('RepetirPassword')?.touched">
                 <label for="contraceniaRepetida">Repetir contraceña</label>
                 <img src="../../assets/imagenes/ojoContracenia.png" alt="" class="ojoContracenia" (click)="setInputContracenia('contraceniaRepetida')">
             </div>

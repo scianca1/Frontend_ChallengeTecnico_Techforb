@@ -27,14 +27,6 @@ export class DashboardComponent implements OnInit{
   }
   ngOnInit(): void {
     this.cargarLecturas();
-  //  this.plantaService.getAllLecturas().subscribe({
-  //     next:(data)=>{
-  //       this.tarjetasGenerales=data;
-  //     },
-  //     error:(error)=>{
-  //       console.log("error al obtener tarjetas");
-  //     }
-  //  })
   }
   cargarLecturas(){
     this.plantaService.getAllLecturas().subscribe({
@@ -51,7 +43,6 @@ export class DashboardComponent implements OnInit{
   getIconTarjetaGeneral(text:string){
     let nombre:string=text.replace(" ","");
     return "../assets/imagenes/"+nombre+".png";
-    // return "../assets/imagenes/Sensoresdeshabilitados.png";
   }
 
   

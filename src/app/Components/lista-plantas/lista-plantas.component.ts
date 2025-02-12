@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetallePlantaService } from 'src/app/Services/detalle-planta.service';
 import { Planta } from 'src/app/Interfaces/Planta';
-import { PlantaHooks } from 'src/app/Hooks/PlantaHooks';
 import { CartelService } from 'src/app/Services/cartel.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorService } from 'src/app/Services/error.service';
@@ -20,27 +19,37 @@ export class ListaPlantasComponent implements OnInit{
   selectPlantaId:number|null=null;
   plantas:Planta[]=[];
   reCargarPlantas:boolean=false;
-  constructor(private servicioDetalle:DetallePlantaService,private plantaHooks:PlantaHooks,private servicioCartel:CartelService,private cookieService:CookieService,private serviceError:ErrorService,private servicePlanta:PlantaService){
+  constructor(private servicioDetalle:DetallePlantaService,private servicioCartel:CartelService,private cookieService:CookieService,private serviceError:ErrorService,private servicePlanta:PlantaService){
       this.servicioCartel.seleccionado.subscribe(s=>{if(!s){this.selectPlantaId=null;
                                                             this.servicioDetalle.Deseleccionar();}});
       
       this.servicePlanta.reCargaPlantas.subscribe(r=>{this.reCargarPlantas=r;
                                                       this.cargarPlantas();})
+
+      this.servicePlanta.plantas.subscribe(p=>this.plantas=p);
   }
   async ngOnInit(): Promise<void> {
     this.cargarPlantas();
   }
 
 async cargarPlantas(){
-  const response:Planta[]|string= await this.plantaHooks.getAllPlantas();
-    if(typeof response!="string"){
-        this.plantas=response;
-    }else{
-       
-    } 
-    this.reCargarPlantas=false;
+    try{
+      const response= await this.servicePlanta.getAllPlantas();
+      if(!response){
+          this.servicioCartel.set("error");
+          this.serviceError.setError("Parece que hay un problema inesperado al querer cargar las plantas , intentalo otra vez");
+      }else if(response==true){
+        
+      }else{
+         this.servicioCartel.set("error");
+       console.log("Lista planta");
+      }
+     
+    }
+    catch(error){
+        this.servicioCartel.set("error");
+    }
 }
-
 
 verPlanta(id:number,planta:Planta){
   console.log(id);
@@ -62,24 +71,16 @@ abrirCartel(content:string,id:number|null,planta:Planta|null):void{
     if(id!=null&& planta!=null){
       this.servicioCartel.set("editarEliminar");
       this.servicioCartel.setId(id);
-        this.servicioCartel.setPlanta(planta);
-        this.verPlanta(id,planta);
+      this.servicioCartel.setPlanta(planta);
+      this.verPlanta(id,planta);
     }else{
       this.servicioCartel.set(content);
     }
-    
-      // if(id!=null&& planta!=null){
-      //   this.servicioCartel.setId(id);
-      //   this.servicioCartel.setPlanta(planta);
-      //   this.verPlanta(id,planta);
-      // }
   }else{
     this.servicioCartel.set("error");
     this.serviceError.setError("ups, Debes tener Permisos de Administrador para usar esta funcion");
   }
 }
-
-
 }
 
 

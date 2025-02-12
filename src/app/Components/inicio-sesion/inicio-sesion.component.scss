@@ -74,8 +74,6 @@ button{
     text-decoration-line:underline;
 }
 
-// agrego 
-
 .indexInicio{
  display: flex;
  align-items: center; 
@@ -87,13 +85,6 @@ button{
     flex-direction: column;
     justify-content: center;
     background: linear-gradient(180deg, #33A3AA 0%, #107076 100%);
-
-    // background-image: url(../assets/imagenes/imagenPortada.png),linear-gradient(180deg, #33A3AA 0%, #107076 100%);
-    // background-size: cover;
-    // background-position: center;
-    // background-blend-mode: overlay;
-    // background-color: rgba(255,255,255,0.01);
-    // background-color: blue;
     width: 62%;
     height: 100%;
     padding-left: 128px;

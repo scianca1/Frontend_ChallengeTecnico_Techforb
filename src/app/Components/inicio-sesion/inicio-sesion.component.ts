@@ -2,8 +2,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import {  Component, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from '@angular/forms';
-import { throwError } from 'rxjs';
-import { AuthHooks } from 'src/app/Hooks/AuthHooks';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ErrorService } from 'src/app/Services/error.service';
 
@@ -25,7 +23,7 @@ export class InicioSesionComponent {
 
    loginForm!:FormGroup;
 
-    constructor(private hooks:AuthHooks,private service:AuthService,private fb:FormBuilder, private errorservice:ErrorService){
+    constructor(private service:AuthService,private fb:FormBuilder, private errorservice:ErrorService){
       errorservice.error.subscribe(e=>this.error=e);
     }
     ngOnInit(): void {

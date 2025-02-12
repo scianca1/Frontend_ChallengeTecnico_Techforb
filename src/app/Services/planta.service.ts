@@ -18,11 +18,25 @@ export class PlantaService {
   private _reCargaPlantas:boolean=false;
   reCargaPlantas:BehaviorSubject<boolean>= new BehaviorSubject(this._reCargaPlantas);
 
+  private _plantas:Planta[]=[];
+  plantas:BehaviorSubject<Planta[]>= new BehaviorSubject(this._plantas);
 
   constructor(private http: HttpClient) { }
 
-  getAllPlantas():Observable<Planta[]>{
-    return this.http.get<Planta[]>(this.apiUrl+"Planta",  { withCredentials: true });
+  getAllPlantas():Promise<boolean>{
+    return new Promise<boolean>((resolve)=>{
+       this.http.get<Planta[]>(this.apiUrl+"Planta",  { withCredentials: true }).subscribe({
+        next: (response) => {
+          this._plantas=response;
+          this.plantas.next(this._plantas);
+          resolve(true);
+        },
+        error: (error) => {
+          console.error('Error al Editar Planta', error);
+          resolve(error);
+        }
+       });
+    })
   }
   getAllLecturas():Observable<TarjetaGeneral[]>{
     return this.http.get<TarjetaGeneral[]>(this.apiUrl+"Planta/Lecturas",{withCredentials:true});

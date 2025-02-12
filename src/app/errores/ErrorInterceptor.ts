@@ -26,17 +26,14 @@ export class ErrorInterceptor implements HttpInterceptor{
                         this.cartelservice.set("errorSesion");
                     }
                     else{
-                        errorMensaje='Parece que hay un error con el servidor por fabor intenta de nuevo o mas tarde';
+                        
+                        errorMensaje=typeof error.error === 'string' ? error.error : error.error?.error ||'Parece que hay un error con el servidor por fabor intenta de nuevo o mas tarde';
                     }
-                    
-                    console.log("Codigo"+error.status+" mensaje= "+error.message);
+                    console.log("Codigo"+error.status+" mensaje= "+error.error.error);
                 }
-                console.log("aca lo mando al login");
+                
                 this.errorService.setError(errorMensaje);
-                
-                
                 return throwError(()=>new Error (errorMensaje));
-                // throw new Error("mensaje");
             })
         )
     }

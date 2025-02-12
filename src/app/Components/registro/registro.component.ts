@@ -1,73 +1,62 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
-import { AuthHooks } from 'src/app/Hooks/AuthHooks';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/Services/auth.service';
+import { ErrorService } from 'src/app/Services/error.service';
 
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'
 })
 export class RegistroComponent {
   textButtonRegister="Registrarse";
   error="";
-  constructor(private hooks:AuthHooks){}
+  loginForm!:FormGroup;
+  constructor(private ServiceAuth:AuthService,private fb:FormBuilder,private serviceError:ErrorService){
+    this.serviceError.error.subscribe(e=>this.error=e);
+  }
 
-  async registrarse(form:NgForm){
-    let user= form.value.user;
-    let email= form.value.email;
-    let contracenia= form.value.contracenia;
-    let repetirContracenia= form.value.contraceniaRepetida
-    const inputError=document.getElementById("error");
-    
-    if(user!=""&&email!=""&&contracenia!=""&&repetirContracenia!=""&&contracenia==repetirContracenia&&this.esEmailValido(email)){
-      try{
-          const json = await firstValueFrom(this.hooks.register(user,email,contracenia,repetirContracenia));
-          console.log("Json Recibido "+json);
-          if(json.estatus==200||json.estatus==201){
-              this.error=json.text;
-              console.log(this.error);
-              console.log(json);
-              (inputError as HTMLElement).style.display="block";
-          }else{
-            this.error=json.text;
-            this.textButtonRegister="Intentar Nuevamente"
-            console.log(json);
-            console.log(this.error);
-            (inputError as HTMLElement).style.display="block";
-          }
-      }catch(error:any){
-      //   if (error instanceof HttpErrorResponse) {
-      //     this.error = error.error.text || "Ocurrió un error inesperado";
-      // } else {
-      //     this.error = "Error desconocido";
-      //     console.log(error);
-      // }
-          console.log(error);
-          const json = error as { estatus?:number,text?: string };
-          this.error = json.text || "Ocurrió un error inesperado";
-          this.textButtonRegister="Intentar Nuevamente";
-          console.log(this.error);
-          console.log(json);
-          (inputError as HTMLElement).style.display="block";
+  ngOnInit(): void {
+    this.loginForm=this.fb.group({
+      usuario:['',[Validators.required]],
+      email:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required,Validators.minLength(8)]],
+      RepetirPassword:['',[Validators.required,Validators.minLength(8)]]
+    });
+  }
+
+  async registrarse(){
+    if(this.loginForm.invalid){
+      this.markAllAsTouched();
+      this.error='Alguno de los campos no cumple con los requerimientos';
+      console.log(this.error);
+      return;
+    }
+    const {usuario,email,password,RepetirPassword}= this.loginForm.value;
+    try{
+      const RegistroExitoso= await this.ServiceAuth.register(usuario,email,password,RepetirPassword);
+      console.log(RegistroExitoso);
+      if(!RegistroExitoso){
+        this.error='Alguno de los campos No cumple con los criterios';
+      }
+    }catch(error){
+      console.log("error"+error);
+      if(typeof error === "string"){
+        this.error=error;
+      }else if(error instanceof Error){
+        this.error= error.message;
+        console.log("error "+error.message);
+      }else{
+        this.error='hubo un problema intentalo mas tarde';
+        
       }
         
-    }else{
-      this.error ="Alguno de los campos no cumple con los requerimiento: Usuario no puede estar vacio, Contraceña deve tener al menos 8 caracteres, Contraceña debe ser igual en los dos ultimos campos, El email debe ser un mail valido"
-      this.textButtonRegister="Intentar de nuevo";
-      (inputError as HTMLElement).style.display="block";
     }
-
-
   }
-  esEmailValido(email:string):boolean{
-    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  }
+ 
   setInputContracenia(input:String){
     let docinput;
     if(input==="contracenia"){
@@ -82,5 +71,11 @@ export class RegistroComponent {
      (docinput as HTMLInputElement).type = "password"
     }
    }
+   private markAllAsTouched(){
+    Object.keys(this.loginForm.controls).forEach(field=>{
+      const control=this.loginForm.get(field);
+      control?.markAsTouched({onlySelf:true});
+    })
+  }
 
 }
