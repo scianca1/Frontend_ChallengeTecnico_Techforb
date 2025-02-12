@@ -70,6 +70,28 @@ export class PlantaService {
     });
   }) 
   }
+  eliminarPlanta(id:number){
+    return new Promise<boolean>((resolve)=>{
+      const httpOptions={
+        headers: new HttpHeaders({
+          'Content-Type':'application/json'
+        }),
+        withCredentials: true
+      }
+      this.http.delete<{}>(this.apiUrl+"Planta/eliminar/"+id, httpOptions).subscribe({
+        next: (response) => {
+          this.recargarPlantas();
+          console.log('Plantaeliminada', response);
+          resolve(true);
+        },
+        error: (error) => {
+          console.error('Error al eliminar Planta', error);
+          resolve(error);
+        }
+      });
+    }) 
+    
+  }
   recargarPlantas(){
       this._reCargaPlantas=true;
       this.reCargaPlantas.next(this._reCargaPlantas);
