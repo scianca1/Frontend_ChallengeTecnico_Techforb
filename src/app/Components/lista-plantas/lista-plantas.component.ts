@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { DetallePlantaService } from 'src/app/Services/detalle-planta.service';
 import { Planta } from 'src/app/Interfaces/Planta';
 import { PlantaHooks } from 'src/app/Hooks/PlantaHooks';
-import { async } from 'rxjs';
 import { CartelService } from 'src/app/Services/cartel.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ErrorService } from 'src/app/Services/error.service';
+import { PlantaService } from 'src/app/Services/planta.service';
 
 @Component({
   selector: 'app-lista-plantas',
@@ -17,18 +19,27 @@ export class ListaPlantasComponent implements OnInit{
   textBotonVerplanta:string="Ver Planta"
   selectPlantaId:number|null=null;
   plantas:Planta[]=[];
-  constructor(private servicioDetalle:DetallePlantaService,private plantaHooks:PlantaHooks,private servicioCartel:CartelService){
-
+  reCargarPlantas:boolean=false;
+  constructor(private servicioDetalle:DetallePlantaService,private plantaHooks:PlantaHooks,private servicioCartel:CartelService,private cookieService:CookieService,private serviceError:ErrorService,private servicePlanta:PlantaService){
+      this.servicioCartel.seleccionado.subscribe(s=>{if(!s){this.selectPlantaId=null;
+                                                            this.servicioDetalle.Deseleccionar();}});
+      
+      this.servicePlanta.reCargaPlantas.subscribe(r=>{this.reCargarPlantas=r;
+                                                      this.cargarPlantas();})
   }
   async ngOnInit(): Promise<void> {
-    const response:Planta[]|string= await this.plantaHooks.getAllPlantas();
+    this.cargarPlantas();
+  }
+
+async cargarPlantas(){
+  const response:Planta[]|string= await this.plantaHooks.getAllPlantas();
     if(typeof response!="string"){
         this.plantas=response;
     }else{
-        //to do: Manejar errores posibles 
-    }  
-  }
-
+       
+    } 
+    this.reCargarPlantas=false;
+}
 
 
 verPlanta(id:number,planta:Planta){
@@ -45,12 +56,29 @@ getBanderaUrl(nombrePais:string):string{
   return this.servicioDetalle.getBanderaUrl(nombrePais);
 }
 
-abrirCartel(content:string,id:number|null):void{
-    this.servicioCartel.set(content);
-    if(id!=null){
+abrirCartel(content:string,id:number|null,planta:Planta|null):void{
+
+  if(this.cookieService.get('RolUser')=="ADMIN"){
+    if(id!=null&& planta!=null){
+      this.servicioCartel.set("editarEliminar");
       this.servicioCartel.setId(id);
+        this.servicioCartel.setPlanta(planta);
+        this.verPlanta(id,planta);
+    }else{
+      this.servicioCartel.set(content);
     }
+    
+      // if(id!=null&& planta!=null){
+      //   this.servicioCartel.setId(id);
+      //   this.servicioCartel.setPlanta(planta);
+      //   this.verPlanta(id,planta);
+      // }
+  }else{
+    this.servicioCartel.set("error");
+    this.serviceError.setError("ups, Debes tener Permisos de Administrador para usar esta funcion");
+  }
 }
+
 
 }
 

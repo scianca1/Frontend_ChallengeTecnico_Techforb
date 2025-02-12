@@ -16,34 +16,28 @@ import { TarjetasGeneralesComponent } from '../tarjetas-generales/tarjetas-gener
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit{
-  // tarjetasgenerales=[
-  //   {
-  //    text:"Lecturas OK",
-  //    nro: 0,
-  //    urlIcon:"../assets/imagenes/tildeIcono.png"
-  //   },
-  //   {
-  //    text:"Alertas medias",
-  //    nro: 0,
-  //    urlIcon:"../assets/imagenes/admiracionIcono.png"
-  //   },
-  //   {
-  //    text:"Alertas rojas",
-  //    nro: 0,
-  //    urlIcon:"../assets/imagenes/peligroIcono.png"
-  //   },
-  //   {
-  //    text:"Sensores deshabilitados",
-  //    nro: 0,
-  //    urlIcon:"../assets/imagenes/cruzIcono.png"
-  //   }
-  // ]
+  
 
-  tarjetasGenerales:TarjetaGeneral[]=[] ;
+  tarjetasGenerales:TarjetaGeneral[]=[];
+  reCargarPlantas:boolean=false;
 
-  constructor(private plantaService:PlantaService){}
+  constructor(private plantaService:PlantaService){
+    this.plantaService.reCargaPlantas.subscribe(s=>{this.reCargarPlantas=s;
+                                                    this.cargarLecturas()})
+  }
   ngOnInit(): void {
-   this.plantaService.getAllLecturas().subscribe({
+    this.cargarLecturas();
+  //  this.plantaService.getAllLecturas().subscribe({
+  //     next:(data)=>{
+  //       this.tarjetasGenerales=data;
+  //     },
+  //     error:(error)=>{
+  //       console.log("error al obtener tarjetas");
+  //     }
+  //  })
+  }
+  cargarLecturas(){
+    this.plantaService.getAllLecturas().subscribe({
       next:(data)=>{
         this.tarjetasGenerales=data;
       },
@@ -51,6 +45,7 @@ export class DashboardComponent implements OnInit{
         console.log("error al obtener tarjetas");
       }
    })
+   this.reCargarPlantas=false;
   }
 
   getIconTarjetaGeneral(text:string){

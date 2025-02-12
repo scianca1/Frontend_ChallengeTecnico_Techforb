@@ -7,11 +7,20 @@
      <form [formGroup]="loginForm" (ngSubmit)="tipo=='crear'? crearPlanta(): editarPlanta(id)">
             <div class="inputContainer">
                 <label for="nombre">Nombre planta</label>
-                <input type="text" name="nombre" id="nombre" 
-                formControlName="nombre" class="form-control formInput"
-                [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" 
-                placeholder="Ingrese nombre"
-                >
+                @if(tipo=="crear"){
+                    <input type="text" name="nombre" id="nombre" 
+                    formControlName="nombre" class="form-control formInput"
+                    [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" 
+                    placeholder="Ingrese nombre"
+                    >
+                }@else if(tipo=="editar"&&planta!=null){
+                    <input type="text" name="nombre" id="nombre" 
+                    formControlName="nombre" class="form-control formInput"
+                    [class.is.invalid]="loginForm.get('nombre')?.invalid && loginForm.get('nombre')?.touched" 
+                    placeholder={{planta.nombre}}
+                    value={{planta.nombre}}
+                    >
+                }
             </div>
             <div class="inputContainer">
                 <label for="pais">Pais</label>
@@ -20,10 +29,14 @@
                 formControlName="pais" class="form-control formInput"
                 [class.is.invalid]="loginForm.get('pais')?.invalid && loginForm.get('pais')?.touched"
                 >
-                    <option  class="optionPlaceholder" value="" disabled>Seleccione pais</option>
-                    @for(pais of paises;track pais){
-                        <option [value]="pais">{{pais}}</option>
+                    @if(tipo=="crear"){
+                        <option  class="optionPlaceholder" value="" disabled>Seleccione pais</option>
+                    }@else if(tipo=="editar"&&planta!=null){
+                        <option  class="optionPlaceholder" value="" disabled>Pais Actual: {{planta.pais}}</option>
                     }
+                     @for(pais of paises;track pais){
+                            <option [value]="pais">{{pais}}</option>
+                        }
                 </select> 
             </div>
             <div class="containsButtons">

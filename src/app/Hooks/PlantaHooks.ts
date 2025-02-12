@@ -28,20 +28,6 @@ import { PlantaService } from "../Services/planta.service";
             }
           });
         })
-        // this.service.getAllPlantas().subscribe({
-        //     next: (response) => {
-        //       console.log('plantas exitoso', response);
-        //       this.plantas=response;
-        //     },
-        //     error: (error) => {
-        //       console.log("error");
-        //       error= error.error.response;
-        //     }
-        //   });
-        //   if(error!=""){
-        //     return error;
-        //   }
-      //   console.log(this.plantas);
-      //  return this.plantas;
+       
     }
   }

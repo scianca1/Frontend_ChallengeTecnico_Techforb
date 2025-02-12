@@ -2,11 +2,9 @@
 <div class="content">
     <app-nav-bar></app-nav-bar>
     <section class="tarjetasGeneralesSeccion">
-        <!-- if(tarjetasGenerales1){ -->
             @for(tarjetasGeneral of tarjetasGenerales;track tarjetasGeneral.text){
                 <app-tarjetas-generales text="{{tarjetasGeneral.text}}" cantidad="{{tarjetasGeneral.nro}}" urlIcon="{{getIconTarjetaGeneral(tarjetasGeneral.text)}}" ></app-tarjetas-generales> 
             }
-        <!-- } -->
     </section>
     <section class="plantasSeccion">
         <app-lista-plantas></app-lista-plantas>

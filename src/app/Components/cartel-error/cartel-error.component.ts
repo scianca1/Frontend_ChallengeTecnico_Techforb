@@ -23,4 +23,8 @@ export class CartelErrorComponent {
       this.serviceCartel.cerrar();
   }
 
+  inicioSesion(){
+    location.href="/";
+  }
+
 }

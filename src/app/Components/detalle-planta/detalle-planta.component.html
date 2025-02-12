@@ -3,7 +3,7 @@
     @if(seleccionado&&planta!=null){
         <span class="nombrePlanta"><img src={{getBanderaUrl(planta.pais)}} alt="">{{planta.pais}}, {{planta.nombre}}</span>
         <div class="contentConDetalle">
-            @for(sensor of sensores1;track sensor.nombre){
+            @for(sensor of sensores;track sensor.nombre){
                <app-tarjeta-sensor [sensor]="sensor"></app-tarjeta-sensor> 
             }
         </div>

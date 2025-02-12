@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Planta } from '../Interfaces/Planta';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class CartelService {
   content:BehaviorSubject<string>= new BehaviorSubject(this._content);
   private _id:number|null=null;
   id:BehaviorSubject<number|null>=new BehaviorSubject(this._id);
+  private _planta:Planta|null=null;
+  planta:BehaviorSubject<Planta|null>=new BehaviorSubject(this._planta);
 
   constructor() { }
 
@@ -21,9 +24,14 @@ export class CartelService {
       this.content.next(this._content);
       this.seleccionado.next(this._seleccioonado);
   }
+  
   setId(id:number){
       this._id=id;
       this.id.next(this._id);
+  }
+  setPlanta(planta:Planta){
+    this._planta=planta;
+    this.planta.next(this._planta);
   }
 
   cerrar(){

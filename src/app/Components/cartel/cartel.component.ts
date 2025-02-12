@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Planta } from 'src/app/Interfaces/Planta';
+import { PlantaService } from 'src/app/Services/planta.service';
 import { CartelErrorComponent } from '../cartel-error/cartel-error.component';
 import { FormPlantasComponent } from '../form-plantas/form-plantas.component';
 
@@ -12,9 +14,15 @@ import { FormPlantasComponent } from '../form-plantas/form-plantas.component';
 export class CartelComponent {
   @Input()content:string='';
   @Input()id:number|null=null;
-  
+  @Input()planta:Planta|null=null;
+  constructor(private servicePlanta:PlantaService){}
 
   setContentErrorExito(content:string){
     this.content=content;
   }
+  eliminarPlanta(id:number){
+    
+    console.log(id);
+  }
+  
 }

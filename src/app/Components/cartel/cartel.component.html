@@ -1,9 +1,15 @@
 <div class="content">
     @if(content=="CrearPlanta"){
         <app-form-plantas tipo="crear" (contenErrorExito)="setContentErrorExito($event)"></app-form-plantas>
-    }@else if(content=="EditarPlanta"&& id!=null){
-        <app-form-plantas tipo="editar" [id]="id" (contenErrorExito)="setContentErrorExito($event)"></app-form-plantas>
-    }@else if(content=="error"||content=="exito"){
+    }@else if(content=="EditarPlanta"&& id!=null&& planta!=null){
+        <app-form-plantas tipo="editar" [id]="id" [planta]="planta" (contenErrorExito)="setContentErrorExito($event)"></app-form-plantas>
+    }@else if(content=="error"||content=="exito"||content=="errorSesion"){
         <app-cartel-error [tipo]="content"></app-cartel-error>
+    }@else if(content=="editarEliminar"&&id!=null&&planta!=null){
+        <div class="ContentButtons">
+            <h5>Planta {{planta.nombre}},{{planta.pais}}</h5>
+            <button (click)="setContentErrorExito('EditarPlanta')" class="ButtonEditar">Editar</button>
+            <button (click)="eliminarPlanta(id)" class="ButtonEliminar">eliminar planta <img src="../../assets/imagenes/peligroChicoicono.png" alt=""></button>
+        </div>
     }
 </div>

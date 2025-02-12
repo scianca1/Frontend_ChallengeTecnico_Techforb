@@ -57,5 +57,8 @@ form{
     color: white;
 }
 .optionPlaceholder{
-    color:rgba(186, 190, 197, 1);
+    
+    &:disabled{
+        color:rgba(186, 190, 197, 1);
+    }
 }

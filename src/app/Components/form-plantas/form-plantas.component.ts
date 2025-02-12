@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { Planta } from 'src/app/Interfaces/Planta';
 import { CartelService } from 'src/app/Services/cartel.service';
 import { ErrorService } from 'src/app/Services/error.service';
 import { PlantaService } from 'src/app/Services/planta.service';
@@ -15,6 +16,7 @@ import { PlantaService } from 'src/app/Services/planta.service';
 export class FormPlantasComponent {
   @Input() tipo='';
   @Input()id:number=0;
+  @Input()planta:Planta|null=null;
   loginForm!:FormGroup;
   @Output() contenErrorExito=new EventEmitter<string>();
   paises=["ARGENTINA","BRASIL","URUGUAY","PARAGUAY"];
@@ -55,9 +57,28 @@ export class FormPlantasComponent {
     }
      
   }
-  editarPlanta(id:number):void{
+  async editarPlanta(id:number){
     if(this.loginForm.valid){
       console.log("editar planta "+id);
+      const {nombre,pais}= this.loginForm.value;
+      try{
+        const plantaEditada= await this.servicePlanta.EditarPlanta(nombre,pais,id);
+        if(!plantaEditada){
+            this.contenErrorExito.emit("error");
+            this.serviceError.setError("Parece que hay un problema inesperado para Editar una planta, intentalo otra vez");
+        }else if(plantaEditada==true){
+          this.contenErrorExito.emit("exito");
+          this.serviceError.setError("Planta Editada con exito");
+        }else{
+           this.contenErrorExito.emit("error");
+           console.log("nueva planta");
+        }
+       
+      }
+      catch(error){
+          this.contenErrorExito.emit("error");
+      }
+
     }else{
       console.log("pais invalido"+ id);
     }

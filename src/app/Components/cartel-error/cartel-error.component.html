@@ -3,11 +3,16 @@
         @if(tipo=="exito"){
             <img src={{urlIconExito}} alt="" class="imgExito">
         }@else{
-            <img src={{urlIconError}} alt="" class="imgExito">
+            <img src={{urlIconError}} alt="" class="imgError">
         }
         <p>{{Mensaje}}<p>
+        @if(tipo=="errorSesion"){
+           <button (click)="inicioSesion()">Volver al Inicio</button> 
+        }
     </div>
+    @if(tipo=="exito"||tipo=="error"){
     <img src="../assets/imagenes/cerrarIcon.png" alt="" class="cruz" (click)="cerrarCartel()">
+    }
 </div>
 
 

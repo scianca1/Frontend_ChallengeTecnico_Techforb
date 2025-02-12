@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
+ 
   private apiUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) {}
@@ -29,6 +30,21 @@ export class AuthService {
         },
         error: (error) => {
           console.error('Error al iniciar sesión', error);
+          resolve(error);
+        }
+      });
+    })
+  } 
+  CerrarSesion():Promise<boolean>{
+    return new Promise<boolean>((resolve)=>{
+      this.http.get(this.apiUrl+"auth/logout", { withCredentials: true }).subscribe({
+        next: (response) => {
+          location.href="/"
+          console.log('Sesion Cerrada con exito', response);
+          resolve(true);
+        },
+        error: (error) => {
+          console.error('Error al Cerrar sesión', error);
           resolve(error);
         }
       });
