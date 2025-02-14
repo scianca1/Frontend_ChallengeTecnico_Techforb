@@ -66,8 +66,7 @@ getBanderaUrl(nombrePais:string):string{
 }
 
 abrirCartel(content:string,id:number|null,planta:Planta|null):void{
-
-  if(this.cookieService.get('RolUser')=="ADMIN"){
+  if(localStorage.getItem('RolUser')=="ADMIN"){
     if(id!=null&& planta!=null){
       this.servicioCartel.set("editarEliminar");
       this.servicioCartel.setId(id);

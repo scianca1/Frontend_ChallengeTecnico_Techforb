@@ -10,16 +10,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent implements OnInit{
-    userName="Error";
-
+    userName:string|null="Error";
     constructor(private cookieService:CookieService){
-
     }
     ngOnInit(): void {
-      if(this.cookieService.check('UserName')){
-        this.userName= this.cookieService.get('UserName');
-      }
-      
-      
+        this.userName= localStorage.getItem('UserName');
     }
 }

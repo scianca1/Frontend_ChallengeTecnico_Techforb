@@ -18,9 +18,12 @@ export class AuthService {
   login(email: string, password: string):Promise<boolean>{
     return new Promise<boolean>((resolve)=>{
       this.http.post(this.apiUrl+"auth/login",{email, password}, { withCredentials: true }).subscribe({
-        next: (response) => {
-          location.href="/dashboard"
+        next: (response:any) => {
           console.log('Inicio de sesión exitoso', response);
+          localStorage.setItem("RolUser",response.RolUser);
+          localStorage.setItem("UserName",response.UserName);
+          location.href="/dashboard"
+          
           resolve(true);
         },
         error: (error) => {
@@ -34,6 +37,7 @@ export class AuthService {
     return new Promise<boolean>((resolve)=>{
       this.http.get(this.apiUrl+"auth/logout", { withCredentials: true }).subscribe({
         next: (response) => {
+          localStorage.clear;
           location.href="/"
           console.log('Sesion Cerrada con exito', response);
           resolve(true);
