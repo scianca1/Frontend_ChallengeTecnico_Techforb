@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "dist/challenge-tecnico-techforb/**",
+        "src": "dist/challenge-tecnico-techforb/browser/**/*",
         "use": "@vercel/static"
       }
     ],
