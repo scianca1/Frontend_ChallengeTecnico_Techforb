@@ -2,8 +2,11 @@
     "version": 2,
     "builds": [
       {
-        "src": "dist/challenge-tecnico-techforb/browser/**/*",
-        "use": "@vercel/static"
+        "src": "angular.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist/challenge-tecnico-techforb/browser"
+        }
       }
     ],
     "routes": [
@@ -13,3 +16,4 @@
       }
     ]
   }
+  
